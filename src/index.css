@@ -1,5 +1,26 @@
 * {
   margin: 0;
   padding: 0;
-  font-size: 40px;
+  box-sizing: border-box;
+  font-size: 2.6rem;
+  /* change this back to 1.6 later */
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+  overflow-x: hidden;
+}
+
+html {
+  /* 10px / 16px = .625, converted the default from 16px to 10px as its base, to make it equal to 10px using percentages */
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+strong {
+  font-weight: 500;
 }
