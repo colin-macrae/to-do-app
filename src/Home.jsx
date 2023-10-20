@@ -4,17 +4,21 @@ import { useState } from "react";
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
 
+  const index = toDoItems.length + 1;
+
   function handleSubmit() {
     const newEntryText = document.querySelector('input[name="new-entry"]').value;
     const newEntry = {
       text: newEntryText,
       completed: false,
       selected: false,
-      id: 1,
+      id: index
     };
     const updatedToDoItems = [...toDoItems, newEntry];
     setToDoItems(updatedToDoItems);
   }
+
+  console.log(toDoItems);
 
   return (
     <section>
