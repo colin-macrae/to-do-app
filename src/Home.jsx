@@ -2,31 +2,51 @@ import "./Home.css";
 import { useState } from "react";
 
 export default function Home() {
-  const [toDoItems, setToDoItems] = useState([
-    { text: "", completed: false, selected: false },
-  ]);
+  const [toDoItems, setToDoItems] = useState([]);
 
   function handleSubmit() {
-    const inputItem = document.querySelector('input[name="new-item"]').value;
-    const newItemObject = [{ text: null, completed: false, selected: false }];
-    newItemObject.text = inputItem;
-    const newAllItems = [...toDoItems, newItemObject];
-    setToDoItems(newAllItems);
+    const newEntryText = document.querySelector('input[name="new-entry"]').value;
+    const newEntry = {
+      text: newEntryText,
+      completed: false,
+      selected: false,
+      id: 1,
+    };
+    const updatedToDoItems = [...toDoItems, newEntry];
+    setToDoItems(updatedToDoItems);
   }
-
-  console.log(toDoItems);
 
   return (
     <section>
       <h1>To Dos</h1>
       <form>
-        <label htmlFor="new-item">New Item</label>
-        <input type="text" name="new-item" />
+        <label htmlFor="new-entry">New Entry</label>
+        <input type="text" name="new-entry" />
         <button type="button" onClick={handleSubmit}>
           Save
         </button>
-      </form>
-      <p>{toDoItems[0].completed ? "completed" : "not completed"}</p>
+      </form>      
+
+      {toDoItems.map((item, id) => {
+        return (
+          <div key={id}>
+            <ListItems toDoItems={item}/>
+          </div>
+        );
+      })}
+
     </section>
+  );
+}
+
+export function ListItems(item) {
+  const { text, completed, selected, id } = item.toDoItems;
+  return (
+    <div>
+      <p>{text}</p>
+      <p>{id}</p>
+      <p>{selected === true ? "selected" : "not selected"}</p>
+      <p>{completed === true ? "completed" : "not completed"}</p>
+    </div>
   );
 }
