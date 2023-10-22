@@ -7,7 +7,9 @@ export default function Home() {
   const index = toDoItems.length + 1;
 
   function handleSubmit() {
-    const newEntryText = document.querySelector('input[name="new-entry"]').value;
+    const newEntryText = document.querySelector(
+      'input[name="new-entry"]'
+    ).value;
     const newEntry = {
       text: newEntryText,
       completed: false,
@@ -22,28 +24,25 @@ export default function Home() {
 
   return (
     <section>
-      <h1>To Dos</h1>
+      <h1>To-do List</h1>
       <form>
-        <label htmlFor="new-entry">New Entry</label>
-        <input type="text" name="new-entry" />
+        <label htmlFor="new-entry"></label>
+        <input type="text" name="new-entry" placeholder="enter new to-do" />
         <button type="button" onClick={handleSubmit}>
           Save
         </button>
-      </form>      
+      </form>
 
       {toDoItems.map((item, id) => {
         return (
           <div key={id}>
-            <ListItems toDoItems={item}/>
+            <ListItems toDoItems={item} />
           </div>
         );
       })}
-
     </section>
   );
 }
-
-
 
 export function ListItems(item) {
   let { text, selected, id } = item.toDoItems;
@@ -56,16 +55,9 @@ export function ListItems(item) {
   }
 
   return (
-    <div>
-      <p>
-        {completed ? <strike>{text}</strike> : text}
-      </p>
-      <p>{id}</p>
-      <p>{selected === true ? "selected" : "not selected"}</p>
-      <p>{completed === true ? "completed" : "not completed"}</p>
-      <button onClick={changeCompleted}>
-        {completed ? "mark not done" : "mark done"}
-      </button>
+    <div className="list-item">
+      <p>{completed ? <strike>{text}</strike> : text}</p>
+      <input type="checkbox" checked={completed} onChange={changeCompleted} />
     </div>
   );
 }
