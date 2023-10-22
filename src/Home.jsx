@@ -14,7 +14,7 @@ export default function Home() {
       text: newEntryText,
       completed: false,
       selected: false,
-      id: index
+      id: index,
     };
     const updatedToDoItems = [...toDoItems, newEntry];
     setToDoItems(updatedToDoItems);
@@ -56,8 +56,9 @@ export function ListItems(item) {
 
   return (
     <div className="list-item">
-      <p>{completed ? <strike>{text}</strike> : text}</p>
       <input type="checkbox" checked={completed} onChange={changeCompleted} />
+      <p>{completed ? <strike>{text}</strike> : text}</p>
+      <i class="fas fa-trash-alt"></i>
     </div>
   );
 }
