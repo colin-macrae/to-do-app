@@ -43,14 +43,25 @@ export default function Home() {
   );
 }
 
+
+
 export function ListItems(item) {
-  const { text, completed, selected, id } = item.toDoItems;
+  let { text, selected, id } = item.toDoItems;
+
+  const [completed, setCompleted] = useState(item.toDoItems.completed);
+
+  function changeCompleted() {
+    setCompleted(!completed);
+    console.log(completed);
+  }
+
   return (
     <div>
       <p>{text}</p>
       <p>{id}</p>
       <p>{selected === true ? "selected" : "not selected"}</p>
       <p>{completed === true ? "completed" : "not completed"}</p>
+      <button onClick={changeCompleted}>{completed ? "mark not done" : "mark done"}</button>
     </div>
   );
 }
