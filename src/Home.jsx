@@ -57,11 +57,15 @@ export function ListItems(item) {
 
   return (
     <div>
-      <p>{text}</p>
+      <p>
+        {completed ? <strike>{text}</strike> : text}
+      </p>
       <p>{id}</p>
       <p>{selected === true ? "selected" : "not selected"}</p>
       <p>{completed === true ? "completed" : "not completed"}</p>
-      <button onClick={changeCompleted}>{completed ? "mark not done" : "mark done"}</button>
+      <button onClick={changeCompleted}>
+        {completed ? "mark not done" : "mark done"}
+      </button>
     </div>
   );
 }
