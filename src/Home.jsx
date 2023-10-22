@@ -58,7 +58,7 @@ export function ListItems(item) {
     <div className="list-item">
       <input type="checkbox" checked={completed} onChange={changeCompleted} />
       <p>{completed ? <strike>{text}</strike> : text}</p>
-      <i class="fas fa-trash-alt"></i>
+      <i className="fas fa-trash-alt"></i>
     </div>
   );
 }
