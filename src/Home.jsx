@@ -60,16 +60,16 @@ export default function Home() {
   );
 }
 
-export function ListItems(props) {
-  let { text, id } = props.toDoItems;
+export function ListItems({toDoItems, setToDoItems}) {
+  let { text, id } = toDoItems;
 
-  const [completed, setCompleted] = useState(props.toDoItems.completed);
+  const [completed, setCompleted] = useState(toDoItems.completed);
 
   function removeItem() {
-    props.setToDoItems((prevToDoItems) =>
-      prevToDoItems.filter((newItems) => newItems.id !== id)
+    setToDoItems((oldItems) =>
+      oldItems.filter((newItems) => newItems.id !== id)
     );
-    console.log(props.toDoItems);
+    console.log(toDoItems);
   }
 
   function changeCompleted() {
