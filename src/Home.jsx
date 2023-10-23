@@ -36,7 +36,7 @@ export default function Home() {
       {toDoItems.map((item, id) => {
         return (
           <div key={id}>
-            <ListItems toDoItems={item} />
+            <ListItems toDoItems={item} setToDoItems={setToDoItems}/>
           </div>
         );
       })}
@@ -44,10 +44,18 @@ export default function Home() {
   );
 }
 
-export function ListItems(item) {
-  let { text, selected, id } = item.toDoItems;
+export function ListItems(props) {
+  let { text, id } = props.toDoItems;
 
-  const [completed, setCompleted] = useState(item.toDoItems.completed);
+  const [completed, setCompleted] = useState(props.toDoItems.completed);
+
+  function removeItem() {
+    props.setToDoItems((prevToDoItems) =>
+      prevToDoItems.filter((newItems) => newItems.id !== id)
+    );
+    console.log(props.toDoItems)
+  }
+
 
   function changeCompleted() {
     setCompleted(!completed);
@@ -58,7 +66,7 @@ export function ListItems(item) {
     <div className="list-item">
       <input type="checkbox" checked={completed} onChange={changeCompleted} />
       <p>{completed ? <strike>{text}</strike> : text}</p>
-      <i className="fas fa-trash-alt"></i>
+      <button onClick={removeItem}><i className="fas fa-times"></i></button>
     </div>
   );
 }
