@@ -38,9 +38,7 @@ export default function Home() {
 
   function removeCompleted() {
     setToDoItems((oldSet) => oldSet.filter((item) => !item.completed));
-  }
-
-  
+  }  
 
   return (
     <section>
@@ -67,7 +65,7 @@ export default function Home() {
 }
 
 export function ListItems({ toDoItem, toDoItems, setToDoItems }) {
-  let { text, id, completed } = toDoItem;
+  const { text, id, completed } = toDoItem;
 
 
   function removeItem() {
