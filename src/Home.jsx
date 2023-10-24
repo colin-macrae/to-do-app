@@ -57,7 +57,7 @@ export default function Home() {
         );
       })}
 
-      <button onClick={removeCompleted}>Remove Completed</button>
+      
     </section>
   );
 }
