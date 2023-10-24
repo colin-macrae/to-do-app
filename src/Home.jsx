@@ -18,7 +18,6 @@ export default function Home() {
     setToDoItems(toDos);
   }, []);
 
-
   function handleSubmit() {
     const newEntryText = document.querySelector(
       'input[name="new-entry"]'
@@ -31,14 +30,18 @@ export default function Home() {
     };
     const updatedToDoItems = [...toDoItems, newEntry];
     setToDoItems(updatedToDoItems);
-    //set items to local storage
+    
+    const itemsJSON = JSON.stringify(updatedToDoItems);
+    localStorage.setItem("to-do", itemsJSON);
+  }  
+
+  function removeAllCompleted() {
+    
+    setToDoItems(updatedToDoItems)
+    const updatedToDoItems = toDoItems.filter((item) => !item.completed);    
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
   }
-
-  function removeAllCompleted() {
-    setToDoItems((oldSet) => oldSet.filter((item) => !item.completed));
-  }  
 
   return (
     <section>
@@ -54,7 +57,11 @@ export default function Home() {
       {toDoItems.map((item, id) => {
         return (
           <div key={id}>
-            <ListItems toDoItem={item} setToDoItems={setToDoItems} toDoItems={toDoItems}/>
+            <ListItems
+              toDoItem={item}
+              setToDoItems={setToDoItems}
+              toDoItems={toDoItems}
+            />
           </div>
         );
       })}
