@@ -36,6 +36,10 @@ export default function Home() {
     localStorage.setItem("to-do", itemsJSON);
   }
 
+  function removeCompleted() {
+    setToDoItems((oldSet) => oldSet.filter((item) => !item.completed));
+  }
+
   
 
   return (
@@ -52,20 +56,19 @@ export default function Home() {
       {toDoItems.map((item, id) => {
         return (
           <div key={id}>
-            <ListItems toDoItems={item} setToDoItems={setToDoItems} />
+            <ListItems toDoItem={item} setToDoItems={setToDoItems} toDoItems={toDoItems}/>
           </div>
         );
       })}
 
-      
+      <button onClick={removeCompleted}>Remove Completed</button>
     </section>
   );
 }
 
-export function ListItems({ toDoItems, setToDoItems }) {
-  let { text, id } = toDoItems;
+export function ListItems({ toDoItem, toDoItems, setToDoItems }) {
+  let { text, id, completed } = toDoItem;
 
-  const [completed, setCompleted] = useState(toDoItems.completed);
 
   function removeItem() {
     setToDoItems((oldItems) =>
@@ -74,7 +77,10 @@ export function ListItems({ toDoItems, setToDoItems }) {
   }
 
   function changeCompleted() {
-    setCompleted(!completed);
+    const updatedToDoItems = toDoItems.map((item) =>
+      item.id === id ? { ...item, completed: !item.completed } : item
+    );
+    setToDoItems(updatedToDoItems);
   }
 
   return (
