@@ -2,16 +2,11 @@ section {
   margin: 2rem;
 }
 
-section,h1, i, p, form, input {
+section, h1, i, p, form, input {
   margin: 2rem;
 }
 
 .list-item {
   display: flex;
   padding: 1rem;
-}
-
-button {
-  padding: 0;
-  margin: 0;
 }

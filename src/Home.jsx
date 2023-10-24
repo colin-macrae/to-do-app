@@ -36,8 +36,6 @@ export default function Home() {
     localStorage.setItem("to-do", itemsJSON);
   }
 
-  console.log(toDoItems);
-
   return (
     <section>
       <h1>To-do List</h1>
@@ -65,17 +63,21 @@ export function ListItems({toDoItems, setToDoItems}) {
 
   const [completed, setCompleted] = useState(toDoItems.completed);
 
+  
+
   function removeItem() {
     setToDoItems((oldItems) =>
       oldItems.filter((newItems) => newItems.id !== id)
     );
-    console.log(toDoItems);
+    let newJSON =  JSON.stringify(toDoItems);
+    trythisbenewarray.push(newJSON)
   }
+  
 
   function changeCompleted() {
     setCompleted(!completed);
-    console.log(completed);
   }
+
 
   return (
     <div className="list-item">
@@ -87,3 +89,5 @@ export function ListItems({toDoItems, setToDoItems}) {
     </div>
   );
 }
+let trythisbenewarray = []
+console.log(trythisbenewarray);
