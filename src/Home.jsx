@@ -1,4 +1,5 @@
 import "./Home.css";
+import ListItems from "./ListItems";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -12,11 +13,11 @@ export default function Home() {
       return [];
     } else return toDos;
   }
-
   useEffect(() => {
     const toDos = getToDos();
     setToDoItems(toDos);
   }, []);
+
 
   function handleSubmit() {
     const newEntryText = document.querySelector(
@@ -30,13 +31,12 @@ export default function Home() {
     };
     const updatedToDoItems = [...toDoItems, newEntry];
     setToDoItems(updatedToDoItems);
-
     //set items to local storage
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
   }
 
-  function removeCompleted() {
+  function removeAllCompleted() {
     setToDoItems((oldSet) => oldSet.filter((item) => !item.completed));
   }  
 
@@ -59,35 +59,9 @@ export default function Home() {
         );
       })}
 
-      <button onClick={removeCompleted}>Remove Completed</button>
+      <button onClick={removeAllCompleted}>Remove Completed</button>
     </section>
   );
 }
 
-export function ListItems({ toDoItem, toDoItems, setToDoItems }) {
-  const { text, id, completed } = toDoItem;
 
-
-  function removeItem() {
-    setToDoItems((oldItems) =>
-      oldItems.filter((newItems) => newItems.id !== id)
-    );
-  }
-
-  function changeCompleted() {
-    const updatedToDoItems = toDoItems.map((item) =>
-      item.id === id ? { ...item, completed: !item.completed } : item
-    );
-    setToDoItems(updatedToDoItems);
-  }
-
-  return (
-    <div className="list-item">
-      <input type="checkbox" checked={completed} onChange={changeCompleted} />
-      <p>{completed ? <strike>{text}</strike> : text}</p>
-      <button onClick={removeItem}>
-        <i className="fas fa-times"></i>
-      </button>
-    </div>
-  );
-}
