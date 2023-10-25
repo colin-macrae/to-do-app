@@ -10,3 +10,7 @@ section, h1, i, p, form, input {
   display: flex;
   padding: 1rem;
 }
+
+.hidden {
+  display: none;
+}

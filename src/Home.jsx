@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   const index = toDoItems.length + 1;
 
@@ -37,15 +38,32 @@ export default function Home() {
 
   function removeAllCompleted() {
     
-    setToDoItems(updatedToDoItems)
+    
     const updatedToDoItems = toDoItems.filter((item) => !item.completed);    
+    setToDoItems(updatedToDoItems)
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
   }
 
+
+  const handleFilter = (selectedFilter) => {
+    setFilter(selectedFilter);
+  };
+
+
+
+
   return (
     <section>
       <h1>To-do List</h1>
+
+      <div>
+        <button onClick={() => handleFilter("all")}>All</button>
+        <button onClick={() => handleFilter("completed")}>Completed</button>
+        <button onClick={() => handleFilter("active")}>Active</button>
+      </div>
+
+
       <form>
         <label htmlFor="new-entry"></label>
         <input type="text" name="new-entry" placeholder="enter new to-do" />
@@ -55,8 +73,17 @@ export default function Home() {
       </form>
 
       {toDoItems.map((item, id) => {
+
+
+        const itemClassName =
+    (filter === "completed" && !item.completed) ||
+    (filter === "active" && item.completed)
+      ? "hidden"
+      : "";
+
+
         return (
-          <div key={id}>
+          <div key={id} className={itemClassName}>
             <ListItems
               toDoItem={item}
               setToDoItems={setToDoItems}
@@ -70,5 +97,6 @@ export default function Home() {
     </section>
   );
 }
+
 
 
