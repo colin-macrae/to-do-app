@@ -1,10 +1,11 @@
 import "./Home.css";
 import ListItems from "./ListItems";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
+  const newEntryInputRef = useRef(null);
 
   const index = toDoItems.length + 1;
 
@@ -23,6 +24,11 @@ export default function Home() {
     const newEntryText = document.querySelector(
       'input[name="new-entry"]'
     ).value;
+
+    if (newEntryText.trim() === "") {
+      return;
+    }
+
     const newEntry = {
       text: newEntryText,
       completed: false,
@@ -31,9 +37,13 @@ export default function Home() {
     };
     const updatedToDoItems = [...toDoItems, newEntry];
     setToDoItems(updatedToDoItems);
-    
+
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
+    document.querySelector(
+      'input[name="new-entry"]'
+    ).value = "";
+    document.querySelector('input[name="new-entry"]').focus();
   }  
 
   function removeAllCompleted() {

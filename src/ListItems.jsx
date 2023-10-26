@@ -26,7 +26,9 @@ export default function ListItems({ toDoItem, toDoItems, setToDoItems }) {
   return (
     <div className="list-item">
       <input type="checkbox" checked={completed} onChange={toggleCompleted} />
-      <p>{completed ? <strike>{text}</strike> : text}</p>
+      <p onClick={toggleCompleted}>
+        {completed ? <strike>{text}</strike> : text}
+      </p>
       <button onClick={removeItem}>
         <i className="fas fa-times"></i>
       </button>
