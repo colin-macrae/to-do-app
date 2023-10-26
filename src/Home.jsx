@@ -1,11 +1,10 @@
 import "./Home.css";
 import ListItems from "./ListItems";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
-  const newEntryInputRef = useRef(null);
 
   const index = toDoItems.length + 1;
 
@@ -24,8 +23,9 @@ export default function Home() {
     const newEntryText = document.querySelector(
       'input[name="new-entry"]'
     ).value;
-
-    if (newEntryText.trim() === "") {
+  
+    // Prevent adding empty to-dos
+    if (newEntryText.trim() === "") {      
       return;
     }
 
@@ -40,9 +40,13 @@ export default function Home() {
 
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
+
+    // Clear the input field 
     document.querySelector(
       'input[name="new-entry"]'
     ).value = "";
+
+    // Set focus to the input field 
     document.querySelector('input[name="new-entry"]').focus();
   }  
 
