@@ -24,6 +24,11 @@ export default function Home() {
       'input[name="new-entry"]'
     ).value;
 
+    // Prevent adding empty to-dos
+    if (newEntryText.trim() === "") {
+      return;
+    }
+
     const newEntry = {
       text: newEntryText,
       completed: false,
@@ -39,12 +44,7 @@ export default function Home() {
     document.querySelector('input[name="new-entry"]').value = "";
 
     // Set focus to the input field
-    document.querySelector('input[name="new-entry"]').focus();
-
-    // Prevent adding empty to-dos
-    if (newEntryText.trim() === "") {
-      return;
-    }
+    document.querySelector('input[name="new-entry"]').focus();    
   }  
 
   function removeAllCompleted() {    
@@ -63,8 +63,8 @@ export default function Home() {
       <h1>To-do List</h1>
       <div>
         <button onClick={() => handleFilter("all")}>All</button>
-        <button onClick={() => handleFilter("completed")}>Completed</button>
         <button onClick={() => handleFilter("active")}>Active</button>
+        <button onClick={() => handleFilter("completed")}>Completed</button>        
       </div>
       <form>
         <label htmlFor="new-entry"></label>
