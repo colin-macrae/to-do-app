@@ -7,7 +7,7 @@ export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
 
-  const index = toDoItems.length + 1;  
+  const index = new Date();  
 
   function getToDos() {
     let toDos = JSON.parse(localStorage.getItem("to-do"));
@@ -36,7 +36,8 @@ export default function Home() {
       selected: false,
       id: index,
     };
-    const updatedToDoItems = [...toDoItems, newEntry];
+    const updatedToDoItems = [...toDoItems];
+    updatedToDoItems.unshift(newEntry);
     setToDoItems(updatedToDoItems);
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
