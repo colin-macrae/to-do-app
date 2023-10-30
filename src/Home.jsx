@@ -41,10 +41,10 @@ export default function Home() {
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
 
-    // Clear the input field
+    // Clear input field
     document.querySelector('input[name="new-entry"]').value = "";
 
-    // Set focus to the input field
+    // Set focus to input field
     document.querySelector('input[name="new-entry"]').focus();
   }
 
@@ -82,10 +82,14 @@ export default function Home() {
           }
           const startIndex = result.source.index;
           const endIndex = result.destination.index;
+          // Create toDoItems copy 
           const updatedToDoItems = [...toDoItems];
+          // Reorder the items upon drag-drop
           const [draggedItem] = updatedToDoItems.splice(startIndex, 1);
           updatedToDoItems.splice(endIndex, 0, draggedItem);
+
           setToDoItems(updatedToDoItems);
+          
           const itemsJSON = JSON.stringify(updatedToDoItems);
           localStorage.setItem("to-do", itemsJSON);
         }}
