@@ -1,11 +1,4 @@
-body {
-  background-color: #f7f7f7;
-}
-
-li {
-  list-style-type: none;
-}
-
+/* General */
 .container {
   max-width: 800px;
   margin: 1rem auto;
@@ -14,6 +7,31 @@ li {
   box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
+body {
+  background-color: #f7f7f7;
+}
+
+.body {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+li {
+  list-style-type: none;
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: 2.2rem;
+}
+
+/* Buttons general */
 button {
   border: 1px solid rgba(0, 0, 0, 0.336);
   padding: .8rem 1rem;
@@ -27,8 +45,22 @@ button:hover {
   background-color: #005b8f;
 }
 
+.buttons {
+  margin-bottom: 3rem;
+}
+
+/* Input area */
 .text-input-box {
   padding: 1rem;
+}
+
+.form {
+  margin-bottom: 3rem;
+}
+
+/* List items general */
+.list-items-container {
+  margin-bottom: 3rem;
 }
 
 .list-item {
@@ -45,57 +77,14 @@ button:hover {
   background-color: rgb(235, 235, 235);
 }
 
-.hidden {
-  display: none;
-}
-
-.remove-completed-btn {
-  margin-bottom: 3rem;
-  background-color: #ff6b6b;
-}
-
-.body {
-  width: 90%;
-  margin: 1rem auto;
-}
-
-h1 {
-  text-align: center;
-  padding-top: 3rem;
-  margin-bottom: 3rem;
-  font-size: 2.2rem;
-}
-
-.buttons {
-  margin-bottom: 3rem;
+/* List item text */
+.text-container {
+  margin: auto 0;
 }
 
 .checkbox {
   opacity: 0;
   position: absolute;
-}
-
-.remove-item {
-  background-color: transparent;
-  border: none;
-  margin-right: 2rem;
-  padding: 1rem;
-  border-radius: 50%;
-  color: black;
-}
-
-.remove-btn-container {
-  display: flex;
-}
-
-.remove-item:hover {
-  background-color: rgb(214, 214, 214);
-  box-sizing: border-box;
-  margin-right: 2rem;
-}
-
-.text-container {
-  margin: auto 0;
 }
 
 .item-text {
@@ -107,12 +96,32 @@ h1 {
   cursor: default;
 }
 
-.form {
-  margin-bottom: 3rem;
+/* Remove Item button */
+.remove-btn-container {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
 }
 
-.list-items-container {
-  margin-bottom: 3rem;
+.remove-item {
+  background-color: transparent;
+  border: none;
+  padding: 1rem;
+  border-radius: 50%;
+  color: black;
+  height: 4rem;
 }
+
+.remove-item:hover {
+  background-color: rgb(214, 214, 214);
+}
+
+/* Other */
+.remove-completed-btn {
+  margin-bottom: 3rem;
+  background-color: #ff6b6b;
+}
+
+
 
 
