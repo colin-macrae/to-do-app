@@ -7,7 +7,7 @@ export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
 
-  const index = new Date();  
+  const index = new Date();
 
   function getToDos() {
     let toDos = JSON.parse(localStorage.getItem("to-do"));
@@ -60,6 +60,23 @@ export default function Home() {
     setFilter(selectedFilter);
   };
 
+
+  let completedExist = false;
+  function checkCompleted() {
+    let completedItems = [];
+    for (let i = 0; i < toDoItems.length; i++) {
+      if (toDoItems[i].completed === true) {
+        completedItems.push(toDoItems[i].completed);
+        console.log("there are completed items", completedItems);
+      } 
+    }  
+    if (completedItems.length === 0) return;
+    else completedExist = true;
+  }
+  checkCompleted();
+  
+  
+
   return (
     <div className="container">
       <section className="body">
@@ -71,7 +88,12 @@ export default function Home() {
         </div>
         <form className="form">
           <label htmlFor="new-entry"></label>
-          <input className="text-input-box" type="text" name="new-entry" placeholder="enter new to-do" />
+          <input
+            className="text-input-box"
+            type="text"
+            name="new-entry"
+            placeholder="enter new to-do"
+          />
           <button className="save-btn" type="button" onClick={handleSubmit}>
             Save
           </button>
@@ -99,10 +121,11 @@ export default function Home() {
           {toDoItems.length > 0 && (
             <Droppable droppableId="to-do" type="group">
               {(provided) => (
-                <ul 
-                className="list-items-container"
-                {...provided.droppableProps} 
-                ref={provided.innerRef}>
+                <ul
+                  className="list-items-container"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
                   {toDoItems.map((item, index) => {
                     const itemClassName =
                       (filter === "completed" && !item.completed) ||
@@ -141,7 +164,9 @@ export default function Home() {
           )}
         </DragDropContext>
 
-        <button className="remove-completed-btn" onClick={removeAllCompleted}>Remove Completed</button>
+        <button className={completedExist ? "remove-completed-btn" : "no-completed-items"} onClick={removeAllCompleted}>
+          Remove Completed
+        </button>
       </section>
     </div>
   );
