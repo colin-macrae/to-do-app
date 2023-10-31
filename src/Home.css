@@ -47,6 +47,8 @@ button:hover {
 
 .buttons {
   margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 /* Input area */
@@ -56,6 +58,11 @@ button:hover {
 
 .form {
   margin-bottom: 3rem;
+}
+
+.save-btn {
+  margin-left: 1.5rem;
+  width: 10rem;
 }
 
 /* List items general */

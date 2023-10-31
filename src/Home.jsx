@@ -72,7 +72,7 @@ export default function Home() {
         <form className="form">
           <label htmlFor="new-entry"></label>
           <input className="text-input-box" type="text" name="new-entry" placeholder="enter new to-do" />
-          <button type="button" onClick={handleSubmit}>
+          <button className="save-btn" type="button" onClick={handleSubmit}>
             Save
           </button>
         </form>
