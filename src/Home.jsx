@@ -61,87 +61,88 @@ export default function Home() {
   };
 
   return (
-    <section>
-      <h1>To-do List</h1>
-      <div>
-        <button onClick={() => handleFilter("all")}>All</button>
-        <button onClick={() => handleFilter("active")}>Active</button>
-        <button onClick={() => handleFilter("completed")}>Completed</button>
-      </div>
-      <form>
-        <label htmlFor="new-entry"></label>
-        <input type="text" name="new-entry" placeholder="enter new to-do" />
-        <button type="button" onClick={handleSubmit}>
-          Save
-        </button>
-      </form>
+    <div className="container">
+      <section className="body">
+        <h1>To-do List</h1>
+        <div className="buttons">
+          <button onClick={() => handleFilter("all")}>All</button>
+          <button onClick={() => handleFilter("active")}>Active</button>
+          <button onClick={() => handleFilter("completed")}>Completed</button>
+        </div>
+        <form className="form">
+          <label htmlFor="new-entry"></label>
+          <input className="text-input-box" type="text" name="new-entry" placeholder="enter new to-do" />
+          <button type="button" onClick={handleSubmit}>
+            Save
+          </button>
+        </form>
 
-      <DragDropContext
-        onDragEnd={(result) => {
-          if (!result.destination) {
-            return; 
-          }
-          const startIndex = result.source.index;
-          const endIndex = result.destination.index;
-          // Create toDoItems copy 
-          const updatedToDoItems = [...toDoItems];
-          // Reorder the items upon drag-drop
-          const [draggedItem] = updatedToDoItems.splice(startIndex, 1);
-          updatedToDoItems.splice(endIndex, 0, draggedItem);
+        <DragDropContext
+          onDragEnd={(result) => {
+            if (!result.destination) {
+              return;
+            }
+            const startIndex = result.source.index;
+            const endIndex = result.destination.index;
+            // Create toDoItems copy
+            const updatedToDoItems = [...toDoItems];
+            // Reorder the items upon drag-drop
+            const [draggedItem] = updatedToDoItems.splice(startIndex, 1);
+            updatedToDoItems.splice(endIndex, 0, draggedItem);
 
-          setToDoItems(updatedToDoItems);
-          
-          const itemsJSON = JSON.stringify(updatedToDoItems);
-          localStorage.setItem("to-do", itemsJSON);
-        }}
-      >
-        {toDoItems.length > 0 && (
-          <Droppable droppableId="to-do" type="group">
-            {(provided) => (
-              <ul
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {toDoItems.map((item, index) => {
-                  const itemClassName =
-                    (filter === "completed" && !item.completed) ||
-                    (filter === "active" && item.completed)
-                      ? "hidden"
-                      : "";
+            setToDoItems(updatedToDoItems);
 
-                  return (
-                    <Draggable
-                      draggableId={item.id.toString()}
-                      key={item.id}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <li
-                          key={item.id}
-                          className={itemClassName}
-                          {...provided.dragHandleProps}
-                          {...provided.draggableProps}
-                          ref={provided.innerRef}
-                        >
-                          <ListItems
-                            toDoItem={item}
-                            setToDoItems={setToDoItems}
-                            toDoItems={toDoItems}
-                          />
-                        </li>
-                      )}
-                    </Draggable>
-                  );
-                })}
-                {provided.placeholder}
-              </ul>
-            )}
-            
-          </Droppable>
-        )}
-      </DragDropContext>
+            const itemsJSON = JSON.stringify(updatedToDoItems);
+            localStorage.setItem("to-do", itemsJSON);
+          }}
+        >
+          {toDoItems.length > 0 && (
+            <Droppable droppableId="to-do" type="group">
+              {(provided) => (
+                <ul 
+                className="list-items-container"
+                {...provided.droppableProps} 
+                ref={provided.innerRef}>
+                  {toDoItems.map((item, index) => {
+                    const itemClassName =
+                      (filter === "completed" && !item.completed) ||
+                      (filter === "active" && item.completed)
+                        ? "hidden"
+                        : "";
 
-      <button onClick={removeAllCompleted}>Remove Completed</button>
-    </section>
+                    return (
+                      <Draggable
+                        draggableId={item.id.toString()}
+                        key={item.id}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <li
+                            key={item.id}
+                            className={itemClassName}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}
+                            ref={provided.innerRef}
+                          >
+                            <ListItems
+                              toDoItem={item}
+                              setToDoItems={setToDoItems}
+                              toDoItems={toDoItems}
+                            />
+                          </li>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          )}
+        </DragDropContext>
+
+        <button className="remove-completed-btn" onClick={removeAllCompleted}>Remove Completed</button>
+      </section>
+    </div>
   );
 }

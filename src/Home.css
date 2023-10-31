@@ -1,16 +1,118 @@
-section {
-  margin: 2rem;
+body {
+  background-color: #f7f7f7;
 }
 
-section, h1, i, p, form, input {
-  margin: 2rem;
+li {
+  list-style-type: none;
+}
+
+.container {
+  max-width: 800px;
+  margin: 1rem auto;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 4px 4px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  padding: .8rem 1rem;
+  margin: 0 .5rem;
+  border-radius: 5px;
+  background-color: #0077b6;
+  color: white;
+}
+
+button:hover {
+  background-color: #005b8f;
+}
+
+.text-input-box {
+  padding: 1rem;
 }
 
 .list-item {
   display: flex;
   padding: 1rem;
+  background-color: rgb(241, 241, 241);
+  margin: 1rem 0;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+}
+
+.list-item:hover {
+  background-color: rgb(235, 235, 235);
 }
 
 .hidden {
   display: none;
 }
+
+.remove-completed-btn {
+  margin-bottom: 3rem;
+  background-color: #ff6b6b;
+}
+
+.body {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: 2.2rem;
+}
+
+.buttons {
+  margin-bottom: 3rem;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.remove-item {
+  background-color: transparent;
+  border: none;
+  margin-right: 2rem;
+  padding: 1rem;
+  border-radius: 50%;
+  /* width: 3rem; */
+  color: black;
+}
+
+.remove-btn-container {
+  display: flex;
+}
+
+.remove-item:hover {
+  background-color: rgb(214, 214, 214);
+  box-sizing: border-box;
+  margin-right: 2rem;
+}
+
+.text-container {
+  margin: auto 0;
+}
+
+.item-text {
+  padding: 1rem;
+}
+
+.item-text:hover {
+  cursor: default;
+}
+
+.form {
+  margin-bottom: 3rem;
+}
+
+.list-items-container {
+  margin-bottom: 3rem;
+}
+
+

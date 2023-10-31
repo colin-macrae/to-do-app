@@ -2,8 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 2.6rem;
-  /* change this back to 1.6 later */
+  font-size: 1.6rem;
 }
 
 body {
@@ -11,7 +10,6 @@ body {
   line-height: 1;
   font-weight: 400;
   color: #555;
-  overflow-x: hidden;
 }
 
 html {

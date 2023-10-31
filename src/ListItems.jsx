@@ -1,4 +1,4 @@
-import './Home.css'
+import "./Home.css";
 
 export default function ListItems({ toDoItem, toDoItems, setToDoItems }) {
   const { text, id, completed } = toDoItem;
@@ -11,28 +11,34 @@ export default function ListItems({ toDoItem, toDoItems, setToDoItems }) {
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
   }
-  
+
   function toggleCompleted() {
     const updatedToDoItems = toDoItems.map((item) =>
       item.id === id ? { ...item, completed: !item.completed } : item
     );
-    setToDoItems(updatedToDoItems);    
+    setToDoItems(updatedToDoItems);
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
   }
 
   return (
     <div className="list-item">
-      <input type="checkbox" checked={completed} onChange={toggleCompleted} />
-      <p onClick={toggleCompleted}>
-        {completed ? <strike>{text}</strike> : text}
-      </p>
-      <button onClick={removeItem}>
-        <i className="fas fa-times"></i>
-      </button>
+      <div className="text-container">
+        <input
+          className="checkbox"
+          type="checkbox"
+          checked={completed}
+          onChange={toggleCompleted}
+        />
+        <p className="item-text" onClick={toggleCompleted}>
+          {completed ? <strike>{text}</strike> : text}
+        </p>
+      </div>
+      <div className="remove-btn-container">
+        <button className="remove-item" onClick={removeItem}>
+          <i className="fas fa-times"></i>
+        </button>
+      </div>
     </div>
   );
 }
-
-
-
