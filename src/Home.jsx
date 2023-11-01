@@ -165,7 +165,7 @@ export default function Home() {
             className={
               completedExist && filter !== "active" ? "remove-completed-btn" : "no-completed-items"
             }
-            onClick={removeAllCompleted}
+            onClick={filter !== "active" ? removeAllCompleted : null}
           >
             Remove Completed
           </button>
