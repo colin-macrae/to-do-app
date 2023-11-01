@@ -22,7 +22,7 @@ export default function ListItems({ toDoItem, toDoItems, setToDoItems }) {
   }
 
   return (
-    <div className="list-item">
+    <div className="list-item" contentEditable="false">
       <div className="text-container">
         <input
           className="checkbox"
