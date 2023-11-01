@@ -163,11 +163,11 @@ export default function Home() {
         <div className="remove-completed-btn-container">
           <button
             className={
-              completedExist ? "remove-completed-btn" : "no-completed-items"
+              completedExist && filter !== "active" ? "remove-completed-btn" : "no-completed-items"
             }
             onClick={removeAllCompleted}
           >
-            Remove All Completed
+            Remove Completed
           </button>
         </div>
       </section>
