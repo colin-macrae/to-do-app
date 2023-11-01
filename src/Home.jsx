@@ -63,19 +63,16 @@ export default function Home() {
 
   let completedExist = false;
   function checkCompleted() {
-    let completedItems = [];
+    const completedItems = [];
     for (let i = 0; i < toDoItems.length; i++) {
       if (toDoItems[i].completed === true) {
         completedItems.push(toDoItems[i].completed);
-        console.log("there are completed items", completedItems);
       } 
     }  
     if (completedItems.length === 0) return;
     else completedExist = true;
   }
-  checkCompleted();
-  
-  
+  checkCompleted();  
 
   return (
     <div className="container">
