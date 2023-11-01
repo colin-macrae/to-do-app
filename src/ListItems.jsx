@@ -19,10 +19,15 @@ export default function ListItems({ toDoItem, toDoItems, setToDoItems }) {
     setToDoItems(updatedToDoItems);
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
+
+    inputField.blur();
+
+
+
   }
 
   return (
-    <div className="list-item" contentEditable="false">
+    <div className="list-item">
       <div className="text-container">
         <input
           className="checkbox"
