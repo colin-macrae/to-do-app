@@ -141,6 +141,11 @@ button:hover {
   cursor: default;
 }
 
+.remove-completed-btn-container {
+  display: flex;
+  justify-content: end;
+}
+
 
 
 

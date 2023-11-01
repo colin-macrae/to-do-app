@@ -60,19 +60,18 @@ export default function Home() {
     setFilter(selectedFilter);
   };
 
-
   let completedExist = false;
   function checkCompleted() {
     const completedItems = [];
     for (let i = 0; i < toDoItems.length; i++) {
       if (toDoItems[i].completed === true) {
         completedItems.push(toDoItems[i].completed);
-      } 
-    }  
+      }
+    }
     if (completedItems.length === 0) return;
     else completedExist = true;
   }
-  checkCompleted();  
+  checkCompleted();
 
   return (
     <div className="container">
@@ -161,9 +160,16 @@ export default function Home() {
           )}
         </DragDropContext>
 
-        <button className={completedExist ? "remove-completed-btn" : "no-completed-items"} onClick={removeAllCompleted}>
-          Remove Completed
-        </button>
+        <div className="remove-completed-btn-container">
+          <button
+            className={
+              completedExist ? "remove-completed-btn" : "no-completed-items"
+            }
+            onClick={removeAllCompleted}
+          >
+            Remove All Completed
+          </button>
+        </div>
       </section>
     </div>
   );
