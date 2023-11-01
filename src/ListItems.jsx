@@ -20,10 +20,9 @@ export default function ListItems({ toDoItem, toDoItems, setToDoItems }) {
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
 
+    // Fix new entry field's persistence of focus by removing the focus when list items are clicked on (toggled completed).  On mobile this prevents the keyboard from popping up upon every toggle attempt, when focus is initially in the form field.
+    const inputField = document.querySelector(".text-input-box");
     inputField.blur();
-
-
-
   }
 
   return (
