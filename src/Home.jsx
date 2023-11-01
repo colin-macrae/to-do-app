@@ -89,6 +89,7 @@ export default function Home() {
             type="text"
             name="new-entry"
             placeholder="enter new to-do"
+            autoComplete="off"
           />
           <button className="save-btn" type="button" onClick={handleSubmit}>
             Save
@@ -163,7 +164,9 @@ export default function Home() {
         <div className="remove-completed-btn-container">
           <button
             className={
-              completedExist && filter !== "active" ? "remove-completed-btn" : "no-completed-items"
+              completedExist && filter !== "active"
+                ? "remove-completed-btn"
+                : "no-completed-items"
             }
             onClick={filter !== "active" ? removeAllCompleted : null}
           >
