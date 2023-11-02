@@ -73,6 +73,14 @@ export default function Home() {
   }
   checkCompleted();
 
+  // Allow "enter" key for form submission 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); 
+      handleSubmit(e); 
+    }
+  };
+
   return (
     <div className="container">
       <section className="body">
@@ -90,6 +98,7 @@ export default function Home() {
             name="new-entry"
             placeholder="enter new to-do"
             autoComplete="off"
+            onKeyPress={handleKeyPress}
           />
           <button className="save-btn" type="button" onClick={handleSubmit}>
             Save
