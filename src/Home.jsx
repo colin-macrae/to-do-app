@@ -59,6 +59,7 @@ export default function Home() {
     setFilter(selectedFilter);
   };
 
+  // Find whether completed items exist (for remove completed btn)
   const hasCompleted = toDoItems.some(item => item.completed === true);
   console.log(hasCompleted)
 
