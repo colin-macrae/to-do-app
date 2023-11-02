@@ -7,7 +7,7 @@ export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
 
-  const index = new Date();
+  const index = Math.random();
 
   function getToDos() {
     let toDos = JSON.parse(localStorage.getItem("to-do"));
