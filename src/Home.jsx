@@ -75,9 +75,26 @@ export default function Home() {
       <section className="body">
         <h1>To-do List</h1>
         <div className="buttons">
-          <button onClick={() => handleFilter("all")}>All</button>
-          <button onClick={() => handleFilter("active")}>Active</button>
-          <button onClick={() => handleFilter("completed")}>Completed</button>
+          <button
+            onClick={() => handleFilter("all")}
+            className={filter === "all" ? "filtered" : ""}
+          >
+            All
+          </button>
+          <button
+            onClick={() => handleFilter("active")}
+            className={filter === "active" ? "filtered" : ""}
+            
+          >
+            Active
+          </button>
+          <button
+            onClick={() => handleFilter("completed")}
+            className={filter === "completed" ? "filtered" : ""}
+            
+          >
+            Completed
+          </button>
         </div>
         <form className="form">
           <label htmlFor="new-entry"></label>
