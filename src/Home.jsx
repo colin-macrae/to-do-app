@@ -61,7 +61,6 @@ export default function Home() {
 
   // Find whether completed items exist (for remove completed btn)
   const hasCompleted = toDoItems.some(item => item.completed === true);
-  console.log(hasCompleted)
 
   // Allow "enter" key for form submission 
   const handleKeyPress = (e) => {
