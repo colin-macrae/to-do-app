@@ -7,8 +7,6 @@ export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
 
-  const index = Math.random();
-
   function getToDos() {
     let toDos = JSON.parse(localStorage.getItem("to-do"));
     if (toDos === null) {
@@ -21,6 +19,7 @@ export default function Home() {
   }, []);
 
   function handleSubmit() {
+    
     const newEntryText = document.querySelector(
       'input[name="new-entry"]'
     ).value;
@@ -29,11 +28,11 @@ export default function Home() {
     if (newEntryText.trim() === "") {
       return;
     }
-
+    
     const newEntry = {
       text: newEntryText,
       completed: false,
-      id: index,
+      id: Math.random(),
     };
     const updatedToDoItems = [...toDoItems];
     updatedToDoItems.unshift(newEntry);
@@ -84,14 +83,12 @@ export default function Home() {
           <button
             onClick={() => handleFilter("active")}
             className={filter === "active" ? "filtered" : ""}
-            
           >
             Active
           </button>
           <button
             onClick={() => handleFilter("completed")}
             className={filter === "completed" ? "filtered" : ""}
-            
           >
             Completed
           </button>
@@ -183,7 +180,8 @@ export default function Home() {
                 ? "remove-completed-btn"
                 : "no-completed-items"
             }
-            onClick={filter !== "active" ? removeAllCompleted : null}
+            //Empty arrow function sets ternary to do nothing.  Initially used "null" but changed it after researching best practices.  
+            onClick={filter !== "active" ? removeAllCompleted : () => {}}
           >
             Remove Completed
           </button>
