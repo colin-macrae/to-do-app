@@ -72,7 +72,7 @@ export default function Home() {
   return (
     <div className="container">
       <section className="body">
-        <h1>To-do List</h1>
+        <h1>My To-dos</h1>
         <div className="buttons">
           <button
             onClick={() => handleFilter("all")}
