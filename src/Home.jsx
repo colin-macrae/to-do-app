@@ -69,9 +69,17 @@ export default function Home() {
     }
   };
 
+  // Handles pressing "enter" on mobile.  Hides keyboard and returns focus
+  const handleSearchSubmit = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      document.querySelector('input[name="new-entry"]').focus();
+    }
+  };
+
   const filteredToDoItems = toDoItems.filter((item) =>
     item.text.toLowerCase().includes(itemSearch.toLowerCase())
-  );  
+  );
 
   return (
     <div className="container">
@@ -105,6 +113,7 @@ export default function Home() {
               placeholder="Search to-dos"
               value={itemSearch}
               onChange={(e) => setItemSearch(e.target.value)}
+              onKeyPress={handleSearchSubmit}
             />
           </form>
         </div>
