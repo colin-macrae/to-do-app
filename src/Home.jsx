@@ -45,6 +45,9 @@ export default function Home() {
 
     // Set focus to input field
     document.querySelector('input[name="new-entry"]').focus();
+
+    // Clear search field when new item added
+    setItemSearch(""); 
   }
 
   function removeAllCompleted() {
@@ -56,6 +59,8 @@ export default function Home() {
 
   const handleFilter = (selectedFilter) => {
     setFilter(selectedFilter);
+    // Clear search field when other filters used
+    setItemSearch("");
   };
 
   // Find whether completed items exist (for remove completed btn)
