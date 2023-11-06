@@ -13,7 +13,7 @@ body {
 
 .body {
   width: 90%;
-  margin: 1rem auto;
+  margin: auto;
 }
 
 li {
@@ -75,6 +75,7 @@ button:hover {
 
 .save-btn {
   margin-left: 1.5rem;
+  margin-right: 0;
   width: 50%;
 }
 
@@ -85,7 +86,7 @@ button:hover {
 
 .list-item {
   display: flex;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   background-color: rgb(245, 245, 245);
   margin: 1rem 0;
   border-radius: 5px;
@@ -160,6 +161,11 @@ button:hover {
 }
 
 @media screen and (max-width: 500px) {
+  .body {
+    width: 92.5%;
+    /* margin: 1rem auto; */
+  }
+
   h1 {
     padding-top: 2rem;
     margin-bottom: 2rem;
@@ -200,5 +206,9 @@ button:hover {
   .save-btn {
     margin-left: 1.5rem;
     width: 40%;
+  }
+
+  .list-item {
+    padding: 0.25rem 1rem;
   }
 }
