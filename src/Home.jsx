@@ -24,7 +24,7 @@ export default function Home() {
       'input[name="new-entry"]'
     ).value;
 
-    // Prevent adding empty to-dos
+    // Prevents adding empty to-dos
     if (newEntryText.trim() === "") {
       return;
     }
@@ -40,13 +40,13 @@ export default function Home() {
     const itemsJSON = JSON.stringify(updatedToDoItems);
     localStorage.setItem("to-do", itemsJSON);
 
-    // Clear input field
+    // Clears input field
     document.querySelector('input[name="new-entry"]').value = "";
 
-    // Set focus to input field
+    // Sets focus to input field
     document.querySelector('input[name="new-entry"]').focus();
 
-    // Clear search field when new list item added
+    // Clears search field when new list item added
     setItemSearch("");
   }
 
@@ -59,11 +59,11 @@ export default function Home() {
 
   const handleFilter = (selectedFilter) => {
     setFilter(selectedFilter);
-    // Clear search field when other filters used
+    // Clears search field when other filters used
     setItemSearch("");
   };
 
-  // Allow "enter" key for form submission
+  // Allows "enter" key for form submission
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -76,17 +76,17 @@ export default function Home() {
     if (e.key === "Enter") {
       e.preventDefault();
       document.querySelector(".search-input").blur();
-      //Include all items in filter results (i.e. active & completed) 
+      //Includes all items in filter results (i.e. both active & completed)
       setFilter("all");
     }
   };
 
-  // Filter toDoItems based on search field value, to then be mapped
+  // Filters toDoItems based on search field value, to then be mapped
   const filteredToDoItems = toDoItems.filter((item) =>
     item.text.toLowerCase().includes(itemSearch.toLowerCase())
   );
 
-  // Find whether completed items exist (for "remove completed" btn conditional styling)
+  // Finds whether completed items exist (for "remove completed" btn conditional styling)
   const hasCompleted = toDoItems.some((item) => item.completed === true);
 
   return (
@@ -96,19 +96,19 @@ export default function Home() {
         <div className="filter-section">
           <button
             onClick={() => handleFilter("all")}
-            className={filter === "all" ? "filtered" : ""}
+            className={filter === "all" ? "filtered-btn-active" : ""}
           >
             All
           </button>
           <button
             onClick={() => handleFilter("active")}
-            className={filter === "active" ? "filtered" : ""}
+            className={filter === "active" ? "filtered-btn-active" : ""}
           >
             Active
           </button>
           <button
             onClick={() => handleFilter("completed")}
-            className={filter === "completed" ? "filtered" : ""}
+            className={filter === "completed" ? "filtered-btn-active" : ""}
           >
             Completed
           </button>
@@ -146,9 +146,9 @@ export default function Home() {
             }
             const startIndex = result.source.index;
             const endIndex = result.destination.index;
-            // Create toDoItems copy
+            // Creates toDoItems copy
             const updatedToDoItems = [...toDoItems];
-            // Reorder the items upon drag-drop
+            // Reorders items upon drag-drop
             const [draggedItem] = updatedToDoItems.splice(startIndex, 1);
             updatedToDoItems.splice(endIndex, 0, draggedItem);
 
