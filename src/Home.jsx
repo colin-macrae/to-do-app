@@ -71,13 +71,13 @@ export default function Home() {
 
   const filteredToDoItems = toDoItems.filter((item) =>
     item.text.toLowerCase().includes(itemSearch.toLowerCase())
-  );
+  );  
 
   return (
     <div className="container">
       <section className="body">
         <h1>My To-dos</h1>
-        <div className="buttons">
+        <div className="filter-section">
           <button
             onClick={() => handleFilter("all")}
             className={filter === "all" ? "filtered" : ""}
