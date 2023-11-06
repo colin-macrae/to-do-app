@@ -76,7 +76,7 @@ export default function Home() {
     if (e.key === "Enter") {
       e.preventDefault();
       document.querySelector(".search-input").blur();
-      //Filter items among all items
+      //Include all items in filter results (i.e. active & completed) 
       setFilter("all");
     }
   };
