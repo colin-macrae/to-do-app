@@ -78,8 +78,9 @@ export default function Home() {
   const handleSearchSubmit = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      // document.querySelector('input[name="new-entry"]').focus();
       document.querySelector(".search-input").blur();
+      //Filter items among all items
+      setFilter("all")
     }
   };
 
