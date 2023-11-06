@@ -46,8 +46,8 @@ export default function Home() {
     // Set focus to input field
     document.querySelector('input[name="new-entry"]').focus();
 
-    // Clear search field when new item added
-    setItemSearch(""); 
+    // Clear search field when new list item added
+    setItemSearch("");
   }
 
   function removeAllCompleted() {
@@ -63,9 +63,6 @@ export default function Home() {
     setItemSearch("");
   };
 
-  // Find whether completed items exist (for remove completed btn)
-  const hasCompleted = toDoItems.some((item) => item.completed === true);
-
   // Allow "enter" key for form submission
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -80,13 +77,17 @@ export default function Home() {
       e.preventDefault();
       document.querySelector(".search-input").blur();
       //Filter items among all items
-      setFilter("all")
+      setFilter("all");
     }
   };
 
+  // Filter toDoItems based on search field value, to then be mapped
   const filteredToDoItems = toDoItems.filter((item) =>
     item.text.toLowerCase().includes(itemSearch.toLowerCase())
   );
+
+  // Find whether completed items exist (for "remove completed" btn conditional styling)
+  const hasCompleted = toDoItems.some((item) => item.completed === true);
 
   return (
     <div className="container">
