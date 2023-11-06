@@ -114,6 +114,7 @@ export default function Home() {
               placeholder="Search to-dos"
               value={itemSearch}
               onChange={(e) => setItemSearch(e.target.value)}
+              autoComplete="off"
               onKeyPress={handleSearchSubmit}
             />
           </form>
