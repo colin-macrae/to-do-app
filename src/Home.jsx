@@ -127,7 +127,7 @@ export default function Home() {
         </div>
         <form className="form">
           <input
-            className="text-input-box"
+            className="new-item-input text-input-box"
             type="text"
             name="new-entry"
             placeholder="enter new to-do"

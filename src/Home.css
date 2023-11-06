@@ -46,7 +46,6 @@ button:hover {
   background-color: #005b8f;
 }
 
-
 /* Filter buttons and search field section */
 .filter-section {
   margin-bottom: 3rem;
@@ -63,15 +62,20 @@ button:hover {
 /* Input field & save button */
 .form {
   margin-bottom: 3rem;
+  display: flex;
 }
 
 .text-input-box {
   padding: 1rem;
 }
 
+.new-item-input {
+  width: 50%;
+}
+
 .save-btn {
   margin-left: 1.5rem;
-  width: 8rem;
+  width: 50%;
 }
 
 /* List items, general */
@@ -189,8 +193,12 @@ button:hover {
     flex-wrap: none;
   }
 
+  .new-item-input {
+    width: 60%;
+  }
+
   .save-btn {
-    width: 100%;
-    margin-right: 0;
+    margin-left: 1.5rem;
+    width: 40%;
   }
 }
