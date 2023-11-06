@@ -21,7 +21,7 @@ Users can:
 - View all, active, or completed items by using the buttons toward the top 
 - Delete items individually by clicking on the "x" to the right side of each item 
 - Remove all completed items by clicking the button toward the bottom, below list items.  This function is only available when completed items are visible on the screen, i.e. 1) completed items actually exist and 2) the user has not opted to view "active" items by filtering out completed items
-Note: Items are stored locally so they will not sync, and will be lost forever when deleted or when access to that device is no longer available 
+Note: Items are stored locally so they will not sync, and will be permanently lost and unrecoverable when deleted. 
 
 
 ## Installation and Setup Instructions
@@ -45,6 +45,6 @@ To Run App Locally:
 
 `npm run dev`
 
-`http://localhost:5173/`  
+`http://localhost:5173`  
 
 

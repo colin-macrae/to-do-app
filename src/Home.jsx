@@ -180,7 +180,7 @@ export default function Home() {
                 ? "remove-completed-btn"
                 : "no-completed-items"
             }
-            //Empty arrow function sets ternary to do nothing.  Initially used "null" but changed it after researching best practices.  
+            //Empty arrow function sets ternary to do nothing 
             onClick={filter !== "active" ? removeAllCompleted : () => {}}
           >
             Remove Completed
