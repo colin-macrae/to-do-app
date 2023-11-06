@@ -113,7 +113,6 @@ export default function Home() {
             Completed
           </button>
           <form>
-            <label htmlFor="search"></label>
             <input
               className="search-input text-input-box"
               type="text"
@@ -127,7 +126,6 @@ export default function Home() {
           </form>
         </div>
         <form className="form">
-          <label htmlFor="new-entry"></label>
           <input
             className="text-input-box"
             type="text"
