@@ -4,15 +4,19 @@ An application for users to make to-do lists.  A personal project built with Rea
 Live link: https://colins-todo-app.netlify.app/
 
 ## Project Screen Shot(s)  
-![Alt text](<todo app gif.gif>)
+![Alt text](<todo app 2 gif.gif>)
 
 ## Features
 Users can: 
 - add to-do items
+- mark items completed/active
+- view "All", "Active", or "Completed" items
+- search items using search filter
 - delete individual items 
 - delete all completed items
-- reorder items by dragging them
-- view "All", "Active", or "Completed" items 
+- reorder items by dragging, dropping them
+
+ 
 
 ## Usage instructions
 - Add to-do items by typing, then clicking "Save", or pressing the "Enter" key on your keyboard or smartphone 
