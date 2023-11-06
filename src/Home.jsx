@@ -6,6 +6,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [itemSearch, setItemSearch] = useState("");
 
   function getToDos() {
     let toDos = JSON.parse(localStorage.getItem("to-do"));
@@ -19,7 +20,6 @@ export default function Home() {
   }, []);
 
   function handleSubmit() {
-    
     const newEntryText = document.querySelector(
       'input[name="new-entry"]'
     ).value;
@@ -28,7 +28,7 @@ export default function Home() {
     if (newEntryText.trim() === "") {
       return;
     }
-    
+
     const newEntry = {
       text: newEntryText,
       completed: false,
@@ -59,15 +59,19 @@ export default function Home() {
   };
 
   // Find whether completed items exist (for remove completed btn)
-  const hasCompleted = toDoItems.some(item => item.completed === true);
+  const hasCompleted = toDoItems.some((item) => item.completed === true);
 
-  // Allow "enter" key for form submission 
+  // Allow "enter" key for form submission
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); 
-      handleSubmit(e); 
+      e.preventDefault();
+      handleSubmit(e);
     }
   };
+
+  const filteredToDoItems = toDoItems.filter((item) =>
+    item.text.toLowerCase().includes(itemSearch.toLowerCase())
+  );
 
   return (
     <div className="container">
@@ -92,6 +96,17 @@ export default function Home() {
           >
             Completed
           </button>
+          <form>
+            <label htmlFor="search"></label>
+            <input
+              className="search-input text-input-box"
+              type="text"
+              name="search"
+              placeholder="Search to-dos"
+              value={itemSearch}
+              onChange={(e) => setItemSearch(e.target.value)}
+            />
+          </form>
         </div>
         <form className="form">
           <label htmlFor="new-entry"></label>
@@ -135,7 +150,7 @@ export default function Home() {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {toDoItems.map((item, index) => {
+                  {filteredToDoItems.map((item, index) => {
                     const itemClassName =
                       (filter === "completed" && !item.completed) ||
                       (filter === "active" && item.completed)
@@ -180,7 +195,7 @@ export default function Home() {
                 ? "remove-completed-btn"
                 : "no-completed-items"
             }
-            //Empty arrow function sets ternary to do nothing 
+            //Empty arrow function sets ternary to do nothing
             onClick={filter !== "active" ? removeAllCompleted : () => {}}
           >
             Remove Completed
