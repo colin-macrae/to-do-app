@@ -65,7 +65,7 @@ button:hover {
   display: flex;
 }
 
-.text-input-box {
+.text-input-box, .search-input-box {
   padding: 1rem;
 }
 
@@ -188,7 +188,7 @@ button:hover {
     cursor: pointer;
   }
 
-  .filter-section form .text-input-box {
+  .filter-section form .text-input-box, .filter-section form .search-input-box {
     width: 100%;
     margin-left: 0.2rem;
   }

@@ -114,7 +114,8 @@ export default function Home() {
           </button>
           <form>
             <input
-              className="search-input text-input-box"
+              // Added a unique "search-input-box" class instead of using "text-input-box" due to .blur() method conflicts.  Only one input field blurs when .blur() is used and two input fields have the same class. 
+              className="search-input search-input-box"
               type="text"
               name="search"
               placeholder="Search to-dos"
