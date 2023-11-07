@@ -59,7 +59,7 @@ export default function Home() {
 
   const handleFilter = (selectedFilter) => {
     setFilter(selectedFilter);
-    // Clears search field when other filters used
+    // Clears search field when button filters used
     setItemSearch("");
   };
 
@@ -114,8 +114,8 @@ export default function Home() {
           </button>
           <form>
             <input
-              // Added a unique "search-input-box" class instead of using "text-input-box" due to .blur() method conflicts.  Only one input field blurs when .blur() is used and two input fields have the same class. 
-              className="search-input search-input-box"
+              // Added a unique "search-input" class instead of using "text-input-box" due to .blur() method conflicts.  Only one input field blurs when .blur() is used and two input fields have the same class. 
+              className="search-input"
               type="text"
               name="search"
               placeholder="Search to-dos"
