@@ -8,47 +8,13 @@ export default function Home() {
   const [filter, setFilter] = useState("all");
   const [itemSearch, setItemSearch] = useState("");
 
-  function getToDos() {
-    let toDos = JSON.parse(localStorage.getItem("to-do"));
-    if (toDos === null) {
-      return [];
-    } else return toDos;
-  }
+  
   useEffect(() => {
     const toDos = getToDos();
     setToDoItems(toDos);
   }, []);
 
-  function handleSubmit() {
-    const newEntryText = document.querySelector(
-      'input[name="new-entry"]'
-    ).value;
-
-    // Prevents adding empty to-dos
-    if (newEntryText.trim() === "") {
-      return;
-    }
-
-    const newEntry = {
-      text: newEntryText,
-      completed: false,
-      id: Math.random(),
-    };
-    const updatedToDoItems = [...toDoItems];
-    updatedToDoItems.unshift(newEntry);
-    setToDoItems(updatedToDoItems);
-    const itemsJSON = JSON.stringify(updatedToDoItems);
-    localStorage.setItem("to-do", itemsJSON);
-
-    // Clears input field
-    document.querySelector('input[name="new-entry"]').value = "";
-
-    // Sets focus to input field
-    document.querySelector('input[name="new-entry"]').focus();
-
-    // Clears search field when new list item added
-    setItemSearch("");
-  }
+  
 
   function removeAllCompleted() {
     const updatedToDoItems = toDoItems.filter((item) => !item.completed);
@@ -135,7 +101,7 @@ export default function Home() {
             autoComplete="off"
             onKeyPress={handleKeyPress}
           />
-          <button className="save-btn" type="button" onClick={handleSubmit}>
+          <button className="save-btn" type="button" onClick={() => handleSubmit({toDoItems, setToDoItems, setItemSearch})}>
             Save
           </button>
         </form>
@@ -221,4 +187,41 @@ export default function Home() {
       </section>
     </div>
   );
+}
+
+
+export function getToDos() {
+  let toDos = JSON.parse(localStorage.getItem("to-do"));
+  if (toDos === null) {
+    return [];
+  } else return toDos;
+}
+
+export function handleSubmit({setToDoItems, toDoItems, setItemSearch}) {
+  const newEntryText = document.querySelector('input[name="new-entry"]').value;
+
+  // Prevents adding empty to-dos
+  if (newEntryText.trim() === "") {
+    return;
+  }
+
+  const newEntry = {
+    text: newEntryText,
+    completed: false,
+    id: Math.random(),
+  };
+  const updatedToDoItems = [...toDoItems];
+  updatedToDoItems.unshift(newEntry);
+  setToDoItems(updatedToDoItems);
+  const itemsJSON = JSON.stringify(updatedToDoItems);
+  localStorage.setItem("to-do", itemsJSON);
+
+  // Clears input field
+  document.querySelector('input[name="new-entry"]').value = "";
+
+  // Sets focus to input field
+  document.querySelector('input[name="new-entry"]').focus();
+
+  // Clears search field when new list item added
+  setItemSearch("");
 }
