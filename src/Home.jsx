@@ -2,6 +2,7 @@ import "./Home.css";
 import ListItems from "./ListItems";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { getToDos, handleSubmit, removeAllCompleted, handleFilter } from "./HomeUtils";
 
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
@@ -131,7 +132,6 @@ export default function Home() {
                       (filter === "active" && item.completed)
                         ? "hidden"
                         : "";
-
                     return (
                       <Draggable
                         draggableId={item.id.toString()}
@@ -162,7 +162,6 @@ export default function Home() {
             </Droppable>
           )}
         </DragDropContext>
-
         <div className="remove-completed-btn-container">
           <button
             className={
@@ -186,46 +185,3 @@ export default function Home() {
 }
 
 
-export function getToDos() {
-  let toDos = JSON.parse(localStorage.getItem("to-do"));
-  if (toDos === null) {
-    return [];
-  } else return toDos;
-}
-
-export function handleSubmit({setToDoItems, toDoItems, setItemSearch}) {
-  const newEntryText = document.querySelector('input[name="new-entry"]').value;
-  // Prevents adding empty to-dos
-  if (newEntryText.trim() === "") {
-    return;
-  }
-  const newEntry = {
-    text: newEntryText,
-    completed: false,
-    id: Math.random(),
-  };
-  const updatedToDoItems = [...toDoItems];
-  updatedToDoItems.unshift(newEntry);
-  setToDoItems(updatedToDoItems);
-  const itemsJSON = JSON.stringify(updatedToDoItems);
-  localStorage.setItem("to-do", itemsJSON);
-  // Clears input field
-  document.querySelector('input[name="new-entry"]').value = "";
-  // Sets focus to input field
-  document.querySelector('input[name="new-entry"]').focus();
-  // Clears search field when new list item added
-  setItemSearch("");
-}
-
-export function removeAllCompleted({setToDoItems, toDoItems}) {
-  const updatedToDoItems = toDoItems.filter((item) => !item.completed);
-  setToDoItems(updatedToDoItems);
-  const itemsJSON = JSON.stringify(updatedToDoItems);
-  localStorage.setItem("to-do", itemsJSON);
-}
-
-const handleFilter = (selectedFilter, {setItemSearch, setFilter}) => {
-  setFilter(selectedFilter);
-  // Clears search field when button filters used
-  setItemSearch("");
-};
