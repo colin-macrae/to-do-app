@@ -8,44 +8,28 @@ export default function Home() {
   const [filter, setFilter] = useState("all");
   const [itemSearch, setItemSearch] = useState("");
 
-  
   useEffect(() => {
     const toDos = getToDos();
     setToDoItems(toDos);
   }, []);
 
-  
-
-  function removeAllCompleted() {
-    const updatedToDoItems = toDoItems.filter((item) => !item.completed);
-    setToDoItems(updatedToDoItems);
-    const itemsJSON = JSON.stringify(updatedToDoItems);
-    localStorage.setItem("to-do", itemsJSON);
-  }
-
-  const handleFilter = (selectedFilter) => {
-    setFilter(selectedFilter);
-    // Clears search field when button filters used
-    setItemSearch("");
-  };
-
   // Allows "enter" key for form submission
-  const handleKeyPress = (e) => {
+  function handleKeyPress(e) {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit(e);
     }
-  };
+  }
 
-  // Handles pressing "enter" on mobile.  Hides keyboard and returns focus
-  const handleSearchSubmit = (e) => {
+  // Handles pressing "enter" on mobile.  Hides keyboard and restores focus
+  function handleSearchSubmit(e) {
     if (e.key === "Enter") {
       e.preventDefault();
       document.querySelector(".search-input").blur();
       //Includes all items in filter results (i.e. both active & completed)
       setFilter("all");
     }
-  };
+  }
 
   // Filters toDoItems based on search field value, to then be mapped
   const filteredToDoItems = toDoItems.filter((item) =>
@@ -61,26 +45,28 @@ export default function Home() {
         <h1>My To-dos</h1>
         <div className="filter-section">
           <button
-            onClick={() => handleFilter("all")}
+            onClick={() => handleFilter("all", { setItemSearch, setFilter })}
             className={filter === "all" ? "filtered-btn-active" : ""}
           >
             All
           </button>
           <button
-            onClick={() => handleFilter("active")}
+            onClick={() => handleFilter("active", { setItemSearch, setFilter })}
             className={filter === "active" ? "filtered-btn-active" : ""}
           >
             Active
           </button>
           <button
-            onClick={() => handleFilter("completed")}
+            onClick={() =>
+              handleFilter("completed", { setItemSearch, setFilter })
+            }
             className={filter === "completed" ? "filtered-btn-active" : ""}
           >
             Completed
           </button>
           <form>
             <input
-              // Added a unique "search-input" class instead of using "text-input-box" due to .blur() method conflicts.  Only one input field blurs when .blur() is used and two input fields have the same class. 
+              // Added a unique "search-input" class instead of using "text-input-box" due to .blur() method conflicts.  Only one input field blurs when .blur() is used and two input fields have the same class.
               className="search-input"
               type="text"
               name="search"
@@ -101,7 +87,13 @@ export default function Home() {
             autoComplete="off"
             onKeyPress={handleKeyPress}
           />
-          <button className="save-btn" type="button" onClick={() => handleSubmit({toDoItems, setToDoItems, setItemSearch})}>
+          <button
+            className="save-btn"
+            type="button"
+            onClick={() =>
+              handleSubmit({ toDoItems, setToDoItems, setItemSearch })
+            }
+          >
             Save
           </button>
         </form>
@@ -179,7 +171,11 @@ export default function Home() {
                 : "no-completed-items"
             }
             //Empty arrow function sets ternary to do nothing
-            onClick={filter !== "active" ? removeAllCompleted : () => {}}
+            onClick={
+              filter !== "active"
+                ? () => removeAllCompleted({ setToDoItems, toDoItems })
+                : () => {}
+            }
           >
             Remove Completed
           </button>
@@ -199,12 +195,10 @@ export function getToDos() {
 
 export function handleSubmit({setToDoItems, toDoItems, setItemSearch}) {
   const newEntryText = document.querySelector('input[name="new-entry"]').value;
-
   // Prevents adding empty to-dos
   if (newEntryText.trim() === "") {
     return;
   }
-
   const newEntry = {
     text: newEntryText,
     completed: false,
@@ -215,13 +209,23 @@ export function handleSubmit({setToDoItems, toDoItems, setItemSearch}) {
   setToDoItems(updatedToDoItems);
   const itemsJSON = JSON.stringify(updatedToDoItems);
   localStorage.setItem("to-do", itemsJSON);
-
   // Clears input field
   document.querySelector('input[name="new-entry"]').value = "";
-
   // Sets focus to input field
   document.querySelector('input[name="new-entry"]').focus();
-
   // Clears search field when new list item added
   setItemSearch("");
 }
+
+export function removeAllCompleted({setToDoItems, toDoItems}) {
+  const updatedToDoItems = toDoItems.filter((item) => !item.completed);
+  setToDoItems(updatedToDoItems);
+  const itemsJSON = JSON.stringify(updatedToDoItems);
+  localStorage.setItem("to-do", itemsJSON);
+}
+
+const handleFilter = (selectedFilter, {setItemSearch, setFilter}) => {
+  setFilter(selectedFilter);
+  // Clears search field when button filters used
+  setItemSearch("");
+};
