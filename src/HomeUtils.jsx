@@ -5,8 +5,8 @@ export function getToDos() {
   } else return toDos;
 }
 
-export function handleSubmit({ setToDoItems, toDoItems, setItemSearch }) {
-  const newEntryText = document.querySelector('input[name="new-entry"]').value;
+export function onSubmit({ setToDoItems, toDoItems, watch }) {
+  const newEntryText = watch("new-entry-input");
   // Prevents adding empty to-dos
   if (newEntryText.trim() === "") {
     return;
@@ -20,13 +20,11 @@ export function handleSubmit({ setToDoItems, toDoItems, setItemSearch }) {
   updatedToDoItems.unshift(newEntry);
   setToDoItems(updatedToDoItems);
   const itemsJSON = JSON.stringify(updatedToDoItems);
-  localStorage.setItem("to-do", itemsJSON);
-  // Clears input field
-  document.querySelector('input[name="new-entry"]').value = "";
-  // Sets focus to input field
-  document.querySelector('input[name="new-entry"]').focus();
-  // Clears search field when new list item added
-  setItemSearch("");
+  localStorage.setItem("to-do", itemsJSON);  
+  // to add 
+  // // Clear input field
+  // // Set focus to input field
+  // // Clear search field when new list item added
 }
 
 export function removeAllCompleted({ setToDoItems, toDoItems }) {

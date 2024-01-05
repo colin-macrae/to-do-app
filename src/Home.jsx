@@ -2,12 +2,15 @@ import "./Home.css";
 import ListItems from "./ListItems";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { getToDos, handleSubmit, removeAllCompleted, handleFilter } from "./HomeUtils";
+import { getToDos, onSubmit, removeAllCompleted, handleFilter } from "./HomeUtils";
+import { useForm } from "react-hook-form"
 
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
   const [itemSearch, setItemSearch] = useState("");
+
+  const { handleSubmit, watch, register } = useForm();
 
   useEffect(() => {
     const toDos = getToDos();
@@ -60,25 +63,18 @@ export default function Home() {
             />
           </form>
         </div>
-        <form className="form">
+        <form
+          onSubmit={handleSubmit(() =>
+            onSubmit({ toDoItems, setToDoItems, watch })
+          )}
+          className="form"
+        >
           <input
             className="new-item-input text-input-box"
-            type="text"
-            name="new-entry"
-            placeholder="enter new to-do"
-            autoComplete="off"
+            {...register("new-entry-input")}
           />
-          <button
-            className="save-btn"
-            type="button"
-            onClick={() =>
-              handleSubmit({ toDoItems, setToDoItems, setItemSearch })
-            }
-          >
-            Save
-          </button>
+          <input type="submit" className="save-btn" />
         </form>
-
         <DragDropContext
           onDragEnd={(result) => {
             if (!result.destination) {

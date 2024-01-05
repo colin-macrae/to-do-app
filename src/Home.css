@@ -32,7 +32,7 @@ h1 {
 }
 
 /* Buttons general */
-button {
+button, .save-btn {
   border: 1px solid rgba(0, 0, 0, 0.336);
   padding: 0.8rem 1rem;
   margin: 0 0.5rem;
@@ -42,7 +42,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover, .save-btn:hover {
   background-color: #005b8f;
 }
 
@@ -178,7 +178,7 @@ button:hover {
     justify-content: center;
   }
 
-  button {
+  button, .save-btn {
     border: 1px solid rgba(0, 0, 0, 0.336);
     padding: 0.8rem 1rem;
     margin: 0 0.2rem;
