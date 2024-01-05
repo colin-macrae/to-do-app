@@ -13,25 +13,7 @@ export default function Home() {
     const toDos = getToDos();
     setToDoItems(toDos);
   }, []);
-
-  // Allows "enter" key for form submission
-  function handleKeyPress(e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleSubmit(e);
-    }
-  }
-
-  // Handles pressing "enter" on mobile.  Hides keyboard and restores focus
-  function handleSearchSubmit(e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      document.querySelector(".search-input").blur();
-      //Includes all items in filter results (i.e. both active & completed)
-      setFilter("all");
-    }
-  }
-
+  
   // Filters toDoItems based on search field value, to then be mapped
   const filteredToDoItems = toDoItems.filter((item) =>
     item.text.toLowerCase().includes(itemSearch.toLowerCase())
@@ -75,7 +57,6 @@ export default function Home() {
               value={itemSearch}
               onChange={(e) => setItemSearch(e.target.value)}
               autoComplete="off"
-              onKeyPress={handleSearchSubmit}
             />
           </form>
         </div>
@@ -86,7 +67,6 @@ export default function Home() {
             name="new-entry"
             placeholder="enter new to-do"
             autoComplete="off"
-            onKeyPress={handleKeyPress}
           />
           <button
             className="save-btn"
