@@ -74,7 +74,6 @@ export default function Home() {
             />
           </form>
         </div>
-
         <form
           onSubmit={handleSubmit(() =>
             onSubmit({

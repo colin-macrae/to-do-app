@@ -23,7 +23,6 @@ export function onSubmit({ setToDoItems, toDoItems, watch, reset, setItemSearch 
   localStorage.setItem("to-do", itemsJSON);  
   reset({"new-entry-input": ''});
   setItemSearch("");
-
 }
 
 export function removeAllCompleted({ setToDoItems, toDoItems }) {
