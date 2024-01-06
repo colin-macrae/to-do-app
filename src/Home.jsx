@@ -82,6 +82,7 @@ export default function Home() {
               setToDoItems,
               watch,
               reset,
+              setItemSearch
             })
           )}
           className="form"
