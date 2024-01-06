@@ -63,10 +63,10 @@ export default function Home() {
           </button>
           <form>
             <input
-              // Added a unique "search-input" class instead of using "text-input-box" due to .blur() method conflicts.  Only one input field blurs when .blur() is used and two input fields have the same class.
+              {...register("new-entry-input", {
+                required: "This field is required",
+              })}
               className="search-input"
-              type="text"
-              name="search"
               placeholder="Search to-dos"
               value={itemSearch}
               onChange={(e) => setItemSearch(e.target.value)}
@@ -91,6 +91,8 @@ export default function Home() {
             {...register("new-entry-input", {
               required: "This field is required",
             })}
+            placeholder="Add a to-do item"
+            autoComplete="off"
           />
           {errors["new-entry-input"] && (
             <p className="input-error-msg">
