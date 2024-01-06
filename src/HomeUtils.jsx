@@ -5,7 +5,7 @@ export function getToDos() {
   } else return toDos;
 }
 
-export function onSubmit({ setToDoItems, toDoItems, watch }) {
+export function onSubmit({ setToDoItems, toDoItems, watch, reset }) {
   const newEntryText = watch("new-entry-input");
   // Prevents adding empty to-dos
   if (newEntryText.trim() === "") {
@@ -21,8 +21,7 @@ export function onSubmit({ setToDoItems, toDoItems, watch }) {
   setToDoItems(updatedToDoItems);
   const itemsJSON = JSON.stringify(updatedToDoItems);
   localStorage.setItem("to-do", itemsJSON);  
-  // to add 
-  // // Clear input field
+  reset({"new-entry-input": ''});
   // // Set focus to input field
   // // Clear search field when new list item added
 }

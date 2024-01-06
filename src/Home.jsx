@@ -10,7 +10,7 @@ export default function Home() {
   const [filter, setFilter] = useState("all");
   const [itemSearch, setItemSearch] = useState("");
 
-  const { handleSubmit, watch, register } = useForm();
+  const { handleSubmit, watch, register, reset } = useForm();
 
   useEffect(() => {
     const toDos = getToDos();
@@ -63,9 +63,10 @@ export default function Home() {
             />
           </form>
         </div>
+
         <form
           onSubmit={handleSubmit(() =>
-            onSubmit({ toDoItems, setToDoItems, watch })
+            onSubmit({ toDoItems, setToDoItems, watch, reset })
           )}
           className="form"
         >
@@ -75,6 +76,7 @@ export default function Home() {
           />
           <input type="submit" className="save-btn" />
         </form>
+
         <DragDropContext
           onDragEnd={(result) => {
             if (!result.destination) {
