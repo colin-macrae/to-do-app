@@ -2,21 +2,32 @@ import "./Home.css";
 import ListItems from "./ListItems";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { getToDos, onSubmit, removeAllCompleted, handleFilter } from "./HomeUtils";
-import { useForm } from "react-hook-form"
+import {
+  getToDos,
+  onSubmit,
+  removeAllCompleted,
+  handleFilter,
+} from "./HomeUtils";
+import { useForm } from "react-hook-form";
 
 export default function Home() {
   const [toDoItems, setToDoItems] = useState([]);
   const [filter, setFilter] = useState("all");
   const [itemSearch, setItemSearch] = useState("");
 
-  const { handleSubmit, watch, register, reset } = useForm();
+  const {
+    handleSubmit,
+    watch,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     const toDos = getToDos();
     setToDoItems(toDos);
   }, []);
-  
+
   // Filters toDoItems based on search field value, to then be mapped
   const filteredToDoItems = toDoItems.filter((item) =>
     item.text.toLowerCase().includes(itemSearch.toLowerCase())
@@ -66,14 +77,26 @@ export default function Home() {
 
         <form
           onSubmit={handleSubmit(() =>
-            onSubmit({ toDoItems, setToDoItems, watch, reset })
+            onSubmit({
+              toDoItems,
+              setToDoItems,
+              watch,
+              reset,
+            })
           )}
           className="form"
         >
           <input
             className="new-item-input text-input-box"
-            {...register("new-entry-input")}
+            {...register("new-entry-input", {
+              required: "This field is required",
+            })}
           />
+          {errors["new-entry-input"] && (
+            <p className="input-error-msg">
+              {errors["new-entry-input"].message}
+            </p>
+          )}
           <input type="submit" className="save-btn" />
         </form>
 
@@ -161,5 +184,3 @@ export default function Home() {
     </div>
   );
 }
-
-

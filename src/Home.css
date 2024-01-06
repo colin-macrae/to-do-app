@@ -73,6 +73,13 @@ button:hover, .save-btn:hover {
   width: 50%;
 }
 
+.input-error-msg {
+  display: flex;
+  margin-left: .5rem;
+  align-items: center;
+  color: red;
+}
+
 .save-btn {
   margin-left: 1.5rem;
   margin-right: 0;

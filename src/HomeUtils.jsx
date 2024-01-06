@@ -22,8 +22,6 @@ export function onSubmit({ setToDoItems, toDoItems, watch, reset }) {
   const itemsJSON = JSON.stringify(updatedToDoItems);
   localStorage.setItem("to-do", itemsJSON);  
   reset({"new-entry-input": ''});
-  // // Set focus to input field
-  // // Clear search field when new list item added
 }
 
 export function removeAllCompleted({ setToDoItems, toDoItems }) {
